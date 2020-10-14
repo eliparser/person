@@ -1,0 +1,52 @@
+openapi: 3.0.0
+
+info:
+  version: 0.0.1
+  title: persons service
+
+tags:
+  - name: "persons"
+
+paths:
+
+  /persons:
+    get:
+      tags:
+        - "persons"
+      operationId: getAllPersons
+      responses:
+        "200":
+          description: "ok response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/person'
+    post:
+      tags:
+        - "persons"
+      operationId: addPerson
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+      responses:
+        '201':
+          description: "Created"
+components:
+
+
+  schemas:
+
+    person:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        age:
+          type: integer
